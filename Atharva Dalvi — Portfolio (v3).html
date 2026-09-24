@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Atharva Dalvi | IT Support, Networking & Cybersecurity</title>
+<style>
+:root{
+  --bg:#070b14; --panel:#0d1420; --panel2:#101a2b; --line:#1c2940;
+  --cyan:#22e6d0; --teal:#0ea5a0; --text:#dce6f0; --muted:#7d8ba3;
+  --mono:'SF Mono',Consolas,'Roboto Mono',monospace;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth; scroll-padding-top:72px;}
+body{
+  background:var(--bg); color:var(--text); font-family:var(--sans);
+  line-height:1.6; overflow-x:hidden;
+  background-image:
+    linear-gradient(rgba(34,230,208,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34,230,208,0.05) 1px, transparent 1px);
+  background-size:44px 44px;
+}
+img{max-width:100%;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
+section{padding:96px 0;}
+h1,h2,h3{font-weight:600; letter-spacing:-0.01em;}
+h2.section-title{font-size:clamp(28px,4vw,38px); margin-bottom:8px;}
+.section-kicker{font-family:var(--mono); font-size:13px; color:var(--cyan); margin-bottom:10px;}
+.section-sub{color:var(--muted); max-width:560px; margin-bottom:48px; font-size:15px;}
+
+/* NAV */
+nav{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  padding-top:calc(16px + env(safe-area-inset-top,0px)); padding-bottom:16px;
+  background:rgba(7,11,20,0.85); backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{max-width:1080px; margin:0 auto; padding:0 24px; display:flex; align-items:center; justify-content:space-between;}
+.logo{font-family:var(--mono); font-weight:600; font-size:16px; color:var(--text);}
+.logo span{color:var(--cyan);}
+.nav-links{display:flex; gap:28px; list-style:none;}
+.nav-links a{font-size:14px; color:var(--muted); transition:color .2s;}
+.nav-links a:hover{color:var(--cyan);}
+.nav-toggle{display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px;}
+.nav-toggle span{width:22px; height:2px; background:var(--text);}
+.mobile-menu{display:none; flex-direction:column; gap:0; border-top:1px solid var(--line); margin-top:16px;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{padding:14px 24px; font-size:15px; color:var(--muted); border-bottom:1px solid var(--line);}
+
+/* HERO */
+.hero{padding:180px 0 96px; text-align:left;}
+.hero-tag{font-family:var(--mono); font-size:13px; color:var(--cyan); margin-bottom:18px;}
+.hero h1{font-size:clamp(34px,6vw,58px); line-height:1.1; margin-bottom:18px;}
+.hero-sub{font-size:clamp(15px,2vw,18px); color:var(--muted); max-width:640px; margin-bottom:36px;}
+.btn-row{display:flex; gap:14px; flex-wrap:wrap;}
+.btn{
+  font-family:var(--sans); font-size:14px; font-weight:600; padding:13px 24px; border-radius:6px;
+  cursor:pointer; border:1px solid transparent; transition:transform .15s, border-color .2s, background .2s;
+  touch-action:manipulation; -webkit-tap-highlight-color:rgba(34,230,208,0.25); position:relative; z-index:1;
+}
+button, a, .filter-btn, .nav-toggle{touch-action:manipulation; cursor:pointer;}
+.btn:active{transform:scale(0.97);}
+.btn-primary{background:var(--cyan); color:#04110f;}
+.btn-primary:hover{background:#3ff0dc;}
+.btn-outline{border-color:var(--line); color:var(--text); background:transparent;}
+.btn-outline:hover{border-color:var(--cyan); color:var(--cyan);}
+
+/* ABOUT */
+.about-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:48px; align-items:start;}
+.about-grid p{color:var(--muted); margin-bottom:16px; font-size:15px;}
+.status-card{background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:22px;}
+.status-row{display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--line); font-size:14px;}
+.status-row:last-child{border-bottom:none;}
+.status-row .k{color:var(--muted);}
+.status-row .v{color:var(--text); font-weight:600; text-align:right;}
+
+/* EDUCATION */
+.edu-item{border-left:2px solid var(--line); padding:4px 0 28px 24px; position:relative;}
+.edu-item::before{content:''; position:absolute; left:-6px; top:6px; width:10px; height:10px; border-radius:50%; background:var(--cyan);}
+.edu-item:last-child{padding-bottom:0;}
+.edu-item h3{font-size:17px; margin-bottom:4px;}
+.edu-item .meta{font-size:13px; color:var(--cyan); font-family:var(--mono); margin-bottom:4px;}
+.edu-item .detail{font-size:14px; color:var(--muted);}
+
+/* SKILLS */
+.skills-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:18px;}
+.skill-card{background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:22px;}
+.skill-card h3{font-size:15px; color:var(--cyan); margin-bottom:12px;}
+.skill-card ul{list-style:none; display:flex; flex-direction:column; gap:8px;}
+.skill-card li{font-size:14px; color:var(--muted); padding-left:14px; position:relative;}
+.skill-card li::before{content:'—'; position:absolute; left:0; color:var(--teal);}
+
+/* PROJECTS */
+.filters{display:flex; gap:10px; margin-bottom:28px;}
+.filter-btn{
+  font-family:var(--mono); font-size:13px; padding:8px 18px; border-radius:20px;
+  border:1px solid var(--line); background:transparent; color:var(--muted); cursor:pointer; transition:.2s;
+}
+.filter-btn.active{border-color:var(--cyan); color:var(--cyan); background:rgba(34,230,208,0.08);}
+.project-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px;}
+.proj-card{background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:24px; display:flex; flex-direction:column; transition:border-color .2s;}
+.proj-card:hover{border-color:var(--teal);}
+.proj-tag{font-family:var(--mono); font-size:11px; color:var(--teal); margin-bottom:10px;}
+.proj-card h3{font-size:17px; margin-bottom:10px;}
+.proj-card p{font-size:14px; color:var(--muted); margin-bottom:16px; flex-grow:1;}
+.tech-row{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:18px;}
+.tech-chip{font-family:var(--mono); font-size:11px; color:var(--muted); border:1px solid var(--line); padding:3px 9px; border-radius:4px;}
+.proj-card .btn{align-self:flex-start; padding:9px 18px;}
+.hidden{display:none !important;}
+
+/* MODAL */
+.modal-overlay{
+  position:fixed; inset:0; background:rgba(4,7,13,0.8); backdrop-filter:blur(4px);
+  display:none; align-items:center; justify-content:center; z-index:200; padding:24px;
+}
+.modal-overlay.open{display:flex;}
+.modal-box{
+  background:var(--panel2); border:1px solid var(--line); border-radius:12px; max-width:560px; width:100%;
+  max-height:85vh; overflow-y:auto; padding:32px;
+}
+.modal-box h3{font-size:22px; margin-bottom:6px;}
+.modal-box .proj-tag{margin-bottom:16px;}
+.modal-bullets{list-style:none; margin-bottom:20px;}
+.modal-bullets li{font-size:14px; color:var(--muted); padding-left:16px; position:relative; margin-bottom:10px; line-height:1.5;}
+.modal-bullets li::before{content:'—'; position:absolute; left:0; color:var(--teal);}
+.modal-box p{font-size:14px; color:var(--muted); margin-bottom:18px;}
+.modal-box .tech-row{margin-bottom:24px;}
+.back-btn{font-family:var(--mono); font-size:13px; color:var(--cyan); background:none; border:none; cursor:pointer;}
+
+/* CERTS */
+.cert-main{background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:28px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
+.cert-main h3{font-size:18px; margin-bottom:6px;}
+.cert-main .meta{font-size:13px; color:var(--muted);}
+.cert-badge{font-family:var(--mono); font-size:11px; color:var(--cyan); border:1px solid var(--cyan); padding:4px 10px; border-radius:20px;}
+.learning-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px;}
+.learning-card{background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:18px;}
+.learning-card h4{font-size:15px; margin-bottom:6px;}
+.status-pill{font-family:var(--mono); font-size:11px; color:#f0b429; border:1px solid #f0b429; padding:2px 9px; border-radius:20px; display:inline-block;}
+
+/* CONTACT */
+.contact-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px;}
+.contact-card{background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:22px; transition:border-color .2s;}
+.contact-card:hover{border-color:var(--cyan);}
+.contact-card .label{font-family:var(--mono); font-size:12px; color:var(--muted); margin-bottom:6px;}
+.contact-card .value{font-size:15px; font-weight:600;}
+.placeholder{color:var(--muted); font-style:italic; font-weight:400; font-size:13px;}
+
+footer{padding:32px 0; text-align:center; color:var(--muted); font-size:13px; border-top:1px solid var(--line);}
+
+@media(max-width:760px){
+  .nav-links{display:none;}
+  .nav-toggle{display:flex;}
+  .about-grid{grid-template-columns:1fr;}
+  section{padding:64px 0;}
+  .hero{padding:130px 0 64px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#home" class="logo">Atharva<span>.</span>Dalvi</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-tag">// IT Support · Networking · Cybersecurity</div>
+    <h1>Hello, I'm Atharva Dalvi.</h1>
+    <p class="hero-sub">CCNA-Certified B.Sc. IT Graduate | IT Support, Networking & Cybersecurity</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#projects">Explore Projects</a>
+      <a class="btn btn-outline" href="https://drive.google.com/file/d/1R1edEVLRj1oWcVMi1UV2vHSlF-cGdzwi/preview" target="_blank" rel="noopener">View CCNA Certificate</a>
+      <a class="btn btn-outline" href="#contact">Contact Me</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-kicker">01 — About</div>
+    <h2 class="section-title">About Me</h2>
+    <div class="about-grid">
+      <div>
+        <p>I'm a B.Sc. Information Technology graduate (2026) and a fresher looking to start my career in IT support, networking, and cybersecurity. I hold a CCNA certification and enjoy building AI-assisted digital projects on the side.</p>
+        <p>My interests sit at the intersection of network infrastructure and security operations — right now that means deepening my hands-on skills in Splunk, SOC workflows, and Microsoft SC-200 while I build practical projects to apply what I learn.</p>
+      </div>
+      <div class="status-card">
+        <div class="status-row"><span class="k">Status</span><span class="v">Fresher</span></div>
+        <div class="status-row"><span class="k">Degree</span><span class="v">B.Sc. IT, 2026</span></div>
+        <div class="status-row"><span class="k">Certification</span><span class="v">CCNA</span></div>
+        <div class="status-row"><span class="k">Focus</span><span class="v">Networking & Security</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="section-kicker">02 — Education</div>
+    <h2 class="section-title">Education</h2>
+    <div class="edu-item">
+      <div class="meta">2023 – 2026</div>
+      <h3>Bachelor of Science in Information Technology</h3>
+      <div class="detail">Sheth N.K.T.T. College of Commerce & Sheth J.T.T. College of Arts (Autonomous) — SGPI 6.90, B Grade</div>
+    </div>
+    <div class="edu-item">
+      <div class="meta">Higher Secondary</div>
+      <h3>12th Standard</h3>
+      <div class="detail">People Education Society School, Thane</div>
+    </div>
+    <div class="edu-item">
+      <div class="meta">Secondary</div>
+      <h3>10th Standard</h3>
+      <div class="detail">People Education Society School, Thane</div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-kicker">03 — Skills</div>
+    <h2 class="section-title">Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Networking</h3>
+        <ul><li>CCNA fundamentals</li><li>TCP/IP, DNS, DHCP</li><li>Routing & Switching</li></ul>
+      </div>
+      <div class="skill-card">
+        <h3>Cybersecurity (Learning)</h3>
+        <ul><li>Splunk — SIEM basics</li><li>SOC operations</li><li>Microsoft SC-200</li></ul>
+      </div>
+      <div class="skill-card">
+        <h3>AI-Assisted Development</h3>
+        <ul><li>Prompt engineering</li><li>Website prototyping</li><li>Lovable AI, Canva AI</li></ul>
+      </div>
+      <div class="skill-card">
+        <h3>Other</h3>
+        <ul><li>Java (OOP)</li><li>Shopify store setup</li><li>Technical presentation</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-kicker">04 — Work</div>
+    <h2 class="section-title">Projects</h2>
+    <p class="section-sub">A mix of academic builds and a personal venture I'm developing on the side.</p>
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="academic">Academic</button>
+      <button class="filter-btn" data-filter="personal">Personal</button>
+    </div>
+    <div class="project-grid" id="projectGrid">
+      <div class="proj-card" data-cat="academic">
+        <div class="proj-tag">Academic · Java</div>
+        <h3>Deadline Tracker Management System</h3>
+        <p>A Java-based task management system for tracking deadlines, built using object-oriented programming concepts.</p>
+        <div class="tech-row"><span class="tech-chip">Java</span><span class="tech-chip">OOP</span></div>
+        <button class="btn btn-outline" data-project-id="deadline">View Details</button>
+      </div>
+      <div class="proj-card" data-cat="academic">
+        <div class="proj-tag">Academic · AI-Assisted</div>
+        <h3>College Attendance Management System</h3>
+        <p>A web-based attendance management system for colleges, built with Lovable AI through prompt-based development.</p>
+        <div class="tech-row"><span class="tech-chip">Lovable AI</span><span class="tech-chip">Prompt Engineering</span></div>
+        <button class="btn btn-outline" data-project-id="attendance">View Details</button>
+      </div>
+      <div class="proj-card" data-cat="academic">
+        <div class="proj-tag">Academic · Java</div>
+        <h3>Business Inquiry Application</h3>
+        <p>A Java application for structured handling of business inquiry data, with status tracking.</p>
+        <div class="tech-row"><span class="tech-chip">Java</span><span class="tech-chip">OOP</span></div>
+        <button class="btn btn-outline" data-project-id="inquiry">View Details</button>
+      </div>
+      <div class="proj-card" data-cat="personal">
+        <div class="proj-tag">Personal · In Development</div>
+        <h3>VASTRADHISH | E-commerce Clothing Store</h3>
+        <p>My own clothing brand and e-commerce project, built around a Shopify store with Qikink integration.</p>
+        <div class="tech-row"><span class="tech-chip">Shopify</span><span class="tech-chip">Qikink</span><span class="tech-chip">ChatGPT</span><span class="tech-chip">Lovable AI</span><span class="tech-chip">Canva AI</span></div>
+        <button class="btn btn-outline" data-project-id="vastradhish">View Details</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box" id="modalBox"></div>
+</div>
+
+<section id="certifications">
+  <div class="wrap">
+    <div class="section-kicker">05 — Certifications</div>
+    <h2 class="section-title">Certifications</h2>
+    <div class="cert-main">
+      <div>
+        <h3>Cisco Certified Network Associate (CCNA)</h3>
+        <div class="meta">Completed 13 March 2026 · Certificate ID 1300825324871317977214048</div>
+      </div>
+      <a class="btn btn-primary" href="https://drive.google.com/file/d/1R1edEVLRj1oWcVMi1UV2vHSlF-cGdzwi/preview" target="_blank" rel="noopener">View Certificate</a>
+    </div>
+    <div class="learning-grid">
+      <div class="learning-card"><h4>Splunk</h4><span class="status-pill">Currently Learning</span></div>
+      <div class="learning-card"><h4>SOC Operations</h4><span class="status-pill">Currently Learning</span></div>
+      <div class="learning-card"><h4>Microsoft SC-200</h4><span class="status-pill">Currently Learning</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-kicker">06 — Get in touch</div>
+    <h2 class="section-title">Contact</h2>
+    <p class="section-sub">Open to IT support, networking, and cybersecurity opportunities.</p>
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:atharva.dalvi9@gmail.com">
+        <div class="label">Email</div>
+        <div class="value">atharva.dalvi9@gmail.com</div>
+      </a>
+      <div class="contact-card">
+        <div class="label">LinkedIn</div>
+        <div class="value placeholder">Add your LinkedIn URL here</div>
+      </div>
+      <div class="contact-card">
+        <div class="label">GitHub</div>
+        <div class="value placeholder">Add your GitHub username here</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Atharva Dalvi</footer>
+
+<script>
+const projects = [
+  {id:'deadline', cat:'academic', tag:'Academic · Java', title:'Deadline Tracker Management System',
+   desc:'A Java-based task management system for tracking deadlines, built using object-oriented programming concepts.',
+   bullets:['Developed a task management system to track and manage deadlines','Implemented add, update, and delete functionality for task records','Applied Object-Oriented Programming (OOP) principles in Java'],
+   tech:['Java','OOP']},
+  {id:'attendance', cat:'academic', tag:'Academic · AI-Assisted', title:'College Attendance Management System',
+   desc:'A web-based attendance management system for colleges, built with Lovable AI through prompt-based development.',
+   bullets:['Created a college attendance management system using Lovable AI through prompt-based development','Used AI-assisted website creation to build the interface and attendance-related functionality','Translated project requirements into a working web application using AI tools'],
+   tech:['Lovable AI','Prompt Engineering']},
+  {id:'inquiry', cat:'academic', tag:'Academic · Java', title:'Business Inquiry Application',
+   desc:'A Java application for structured handling of business inquiry data, with status tracking.',
+   bullets:['Built a structured system for handling business inquiry data','Implemented inquiry status tracking from submission through resolution','Applied Object-Oriented Programming (OOP) principles in Java'],
+   tech:['Java','OOP']},
+  {id:'vastradhish', cat:'personal', tag:'Personal · In Development', title:'VASTRADHISH | E-commerce Clothing Store',
+   desc:'My own clothing brand and e-commerce project, built around a Shopify store with Qikink integration.',
+   bullets:['Developing an online clothing store using Shopify and AI-assisted website-building tools','Leveraging ChatGPT, Lovable AI, and Canva AI for website planning, content creation, and design','Exploring product integration and e-commerce storefront setup — not yet fully launched'],
+   tech:['Shopify','Qikink','ChatGPT','Lovable AI','Canva AI']},
+];
+
+const cards = document.querySelectorAll('.proj-card');
+function filterProjects(filter){
+  cards.forEach(card=>{
+    const show = filter==='all' || card.dataset.cat===filter;
+    card.classList.toggle('hidden', !show);
+  });
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    filterProjects(btn.dataset.filter);
+  });
+});
+
+const overlay = document.getElementById('modalOverlay');
+const modalBox = document.getElementById('modalBox');
+function openModal(id){
+  const p = projects.find(x=>x.id===id);
+  modalBox.innerHTML = `
+    <button class="back-btn" data-close-modal>← Back</button>
+    <div class="proj-tag" style="margin-top:16px">${p.tag}</div>
+    <h3>${p.title}</h3>
+    <ul class="modal-bullets">${p.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+    <div class="tech-row">${p.tech.map(t=>`<span class="tech-chip">${t}</span>`).join('')}</div>
+    <div class="placeholder">Project link: to be added</div>`;
+  overlay.classList.add('open');
+}
+function closeModal(){ overlay.classList.remove('open'); }
+
+// Event delegation: catches clicks on dynamically-generated buttons too
+document.addEventListener('click', e=>{
+  const viewBtn = e.target.closest('[data-project-id]');
+  if(viewBtn){ openModal(viewBtn.dataset.projectId); return; }
+  if(e.target.closest('[data-close-modal]')){ closeModal(); return; }
+  if(e.target === overlay){ closeModal(); return; }
+});
+
+const navToggle = document.getElementById('navToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+navToggle.addEventListener('click', ()=> mobileMenu.classList.toggle('open'));
+document.querySelectorAll('.mobile-menu a').forEach(a=> a.addEventListener('click', ()=> mobileMenu.classList.remove('open')));
+</script>
+</body>
+</html>
